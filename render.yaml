@@ -2,25 +2,23 @@ services:
   - type: web
     name: n8n
     env: docker
-    plan: starter
+    plan: starter # Assurez-vous d'utiliser au moins le plan starter
     region: oregon
+    buildCommand: ""
+    startCommand: ""
+    healthCheckPath: /
     envVars:
       - key: N8N_BASIC_AUTH_USER
         value: admin
       - key: N8N_BASIC_AUTH_PASSWORD
         value: monMotDePasse
+      - key: N8N_PORT
+        value: "10000"
+      - key: PORT
+        value: "10000"
       - key: N8N_PROTOCOL
         value: https
-      - key: N8N_PORT
-        value: 10000
       - key: N8N_HOST
         value: n8n-on-render-7wc9.onrender.com
       - key: N8N_WEBHOOK_URL
         value: https://n8n-on-render-7wc9.onrender.com
-      - key: WEBHOOK_TUNNEL_URL
-        value: https://n8n-on-render-7wc9.onrender.com
-      - key: N8N_EDITOR_BASE_URL
-        fromService:
-          type: web
-          name: n8n
-          property: url
